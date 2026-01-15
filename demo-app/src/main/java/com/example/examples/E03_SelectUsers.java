@@ -1,6 +1,7 @@
 package com.example.examples;
 
 import com.example.config.DatabaseConfig;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,13 +24,27 @@ public class E03_SelectUsers {
 
         String sql = "SELECT id, name, email FROM users ORDER BY id";
 
-        System.out.println("ID  | Nomi                 | Email");
-        System.out.println("----|----------------------|------------------------");
+        try (Connection conn = DriverManager.getConnection(
+                DatabaseConfig.URL,
+                DatabaseConfig.USER,
+                DatabaseConfig.PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
-        // TODO: Implementa SELECT
-        // 1. Kria Connection, PreparedStatement (try-with-resources)
-        // 2. Xama stmt.executeQuery() pa otén ResultSet
-        // 3. Loop ku while (rs.next()) { ... }
-        // 4. Uza rs.getLong("id"), rs.getString("name"), etc.
+            System.out.println("ID  | Nomi                 | Email");
+            System.out.println("----|----------------------|------------------------");
+
+            // ResultSet é kursor - rs.next() move pa prósima linha
+            while (rs.next()) {
+                long id = rs.getLong("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+
+                System.out.printf("% -3d | %-20s | %s%n", id, name, email);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Éru: " + e.getMessage());
+        }
     }
 }
