@@ -6,15 +6,46 @@ Java 21 | PostgreSQL 16 | Maven
 
 ---
 
-## Kuzé ki E
+## Kuzê ki é
 
-Es projetu é un tutorial konpletu pa prende konekta Java ku PostgreSQL uzandu JDBC. Inklui ezénplus pasu-pa-pasu i un aplikason CLI konpletu (Ajenda di Kontatu).
+Es projetu é un tutorial konpletu pa prende konekta Java ku PostgreSQL uzandu JDBC. Inklui ezénplus pasu-pa-pasu ku TODO pa bu implementa.
 
 **Bu ta prende:**
 - Konekta Java ku PostgreSQL
 - Faze operason CRUD (Create, Read, Update, Delete)
 - Uza PreparedStatement pa query seguru
-- Organiza kódigu ku DAO pattern
+- Jeri rekursus ku try-with-resources
+
+---
+
+## Branchis di Tutorial
+
+Es repositóriu ten branchis separadu pa kada seksun di tutorial:
+
+| Branch | Konteudu |
+|--------|----------|
+| `main` | **Scaffolding ku TODO** - Kumesa li! |
+| `01-connection` | Soluson E01: Konexon ku bazi di dadus |
+| `02-crud-insert` | Soluson E02: INSERT ku PreparedStatement |
+| `03-crud-select` | Soluson E03: SELECT ku ResultSet |
+| `04-crud-update` | Soluson E04: UPDATE ku WHERE |
+| `05-crud-delete` | Soluson E05: DELETE ku WHERE |
+| `challenge-solution` | Dezafiu: Ajenda di Kontatu (CLI + DAO) |
+
+**Manera di uza:**
+```bash
+# Odja bu implementason atual
+git status
+
+# Odja soluson di un ezénplu
+git checkout 01-connection
+
+# Kompara bu kódigu ku soluson
+git diff main 01-connection
+
+# Volta pa scaffolding pa tenta novamenti
+git checkout main
+```
 
 ---
 
@@ -43,11 +74,8 @@ docker compose -f docker/docker-compose.yml up -d
 cd demo-app
 mvn compile
 
-# 4. Testa konexon
-mvn exec:java -Dexec.mainClass="com.example.examples.E01_Connection"
+# 4. Verifika ki projeto ta konpila (ezénplus ten TODO)
 ```
-
-Si bu odja "Konexon stabelecidu ku susesu!" - bu sta prontu!
 
 ---
 
@@ -60,27 +88,23 @@ java-jdbc-tutorial/
 │   └── src/main/java/com/example/
 │       ├── config/
 │       │   └── DatabaseConfig.java    # Konfigurason di bazi di dadus
-│       ├── examples/
-│       │   ├── E01_Connection.java    # Konexon báziku
-│       │   ├── E02_InsertUser.java    # INSERT (Create)
-│       │   ├── E03_SelectUsers.java   # SELECT (Read)
-│       │   ├── E04_UpdateUser.java    # UPDATE
-│       │   ├── E05_DeleteUser.java    # DELETE
-│       ├── dao/
-│       │   └── ContactDao.java        # Data Access Object
-│       └── ContactAgendaApp.java      # Aplikason CLI (dezafiu)
+│       └── examples/
+│           ├── E01_Connection.java    # TODO: Konexon báziku
+│           ├── E02_InsertUser.java    # TODO: INSERT (Create)
+│           ├── E03_SelectUsers.java   # TODO: SELECT (Read)
+│           ├── E04_UpdateUser.java    # TODO: UPDATE
+│           └── E05_DeleteUser.java    # TODO: DELETE
 ├── docker/
 │   ├── docker-compose.yml             # Setup PostgreSQL
 │   └── init/01-schema.sql             # Tabelas inisial
-├── tutorial.md                        # Tutorial konpletu
-└── cheatsheet.md                      # Referénsia rápidu
+└── README.md
 ```
 
 ---
 
 ## Kori Ezénplus
 
-Kada ezénplu demonstra un konseitu JDBC. Kori es na orden:
+Kada ezénplu demonstra un konseitu JDBC. Implementa TODO i kori:
 
 | Ezénplu | Diskrison | Komandu |
 |---------|-----------|---------|
@@ -94,33 +118,19 @@ Kada ezénplu demonstra un konseitu JDBC. Kori es na orden:
 
 ---
 
-## Aplikason di Kontatu (Dezafiu)
+## Dezafiu: Ajenda di Kontatu
 
-Dipôs di kori ezénplus, tenta aplikason CLI konpletu:
+Dipôs di kaba tudu ezénplus, tenta konstrui un aplikason CLI kompletu!
 
+**Rekizitus:**
+- Kria tabela `contacts` ku koluna: `id`, `name`, `phone`, `email`
+- Implementa menu interativu ku CRUD kompletu
+- Uza DAO pattern pa organiza kódigu
+
+**Odja soluson:**
 ```bash
-mvn exec:java -Dexec.mainClass="com.example.ContactAgendaApp"
+git checkout challenge-solution
 ```
-
-Bu ta odja menu interativu:
-
-```
-========================================
-    AJENDA DI KONTATU - Skola.dev
-========================================
-
-=== Menu Prinsipal ===
-1. Lista tudu kontatu
-2. Buska kontatu pa ID
-3. Kria kontatu nobu
-4. Atualiza kontatu
-5. Apaga kontatu
-0. Sai
-
-Skodje opson:
-```
-
-Uza menu pa testa tudu operason CRUD!
 
 ---
 
@@ -137,15 +147,6 @@ SELECT * FROM users;
 SELECT * FROM contacts;
 \q  -- sai
 ```
-
----
-
-## Rekursus Adisional
-
-- [Tutorial Konpletu](tutorial.md) - Gia pasu-pa-pasu ku splikason detalhadu
-- [Cheatsheet](cheatsheet.md) - Referénsia rápidu di sintaxi JDBC
-- [Slides di Apresentason (PDF)](https://drive.google.com/file/d/1scpW32mZVklz433-kdWHbaMQBzAwY3hl/view?usp=sharing) - Material vizual di aula
-- [Skola.dev](https://skola.dev) - Más kursus i tutoriais
 
 ---
 
