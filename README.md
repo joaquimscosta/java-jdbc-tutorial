@@ -16,8 +16,6 @@ Es projetu é un tutorial konpletu pa prende konekta Java ku PostgreSQL uzandu J
 - Uza PreparedStatement pa query seguru
 - Jeri rekursus ku try-with-resources
 
-📎 [Slides di Apresentason (PDF)](https://drive.google.com/file/d/1K2Dkf0I-IkwLNNwOUuskfNCr2JaVZaJ0/view?usp=sharing)
-
 ---
 
 ## Branchis di Tutorial
@@ -149,6 +147,15 @@ SELECT * FROM users;
 SELECT * FROM contacts;
 \q  -- sai
 ```
+
+---
+
+## Rekursus Adisional
+
+- [Tutorial Konpletu](tutorial.md) - Gia pasu-pa-pasu ku splikason detalhadu
+- [Cheatsheet](cheatsheet.md) - Referénsia rápidu di sintaxi JDBC
+- [Slides di Aprezentason (PDF)](https://drive.google.com/file/d/1K2Dkf0I-IkwLNNwOUuskfNCr2JaVZaJ0/view?usp=sharing) - Material vizual di aula
+- [Skola.dev](https://skola.dev) - Más kursus i tutoriais
 
 ---
 
