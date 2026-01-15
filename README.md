@@ -16,6 +16,8 @@ Es projetu é un tutorial konpletu pa prende konekta Java ku PostgreSQL uzandu J
 - Uza PreparedStatement pa query seguru
 - Jeri rekursus ku try-with-resources
 
+📎 [Slides di Apresentason (PDF)](https://drive.google.com/file/d/1K2Dkf0I-IkwLNNwOUuskfNCr2JaVZaJ0/view?usp=sharing)
+
 ---
 
 ## Branchis di Tutorial
