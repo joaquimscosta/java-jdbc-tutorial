@@ -1,6 +1,7 @@
 package com.example.examples;
 
 import com.example.config.DatabaseConfig;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,9 +23,25 @@ public class E05_DeleteUser {
         // DELETE FROM users;  <-- PERIGOZU!
         String sql = "DELETE FROM users WHERE email = ?";
 
-        // TODO: Implementa DELETE
-        // 1. Kria Connection i PreparedStatement (try-with-resources)
-        // 2. Defini email pa apaga: stmt.setString(1, "ana@skola.dev")
-        // 3. Xama executeUpdate()
+        try (Connection conn = DriverManager.getConnection(
+                DatabaseConfig.URL,
+                DatabaseConfig.USER,
+                DatabaseConfig.PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, "ana@skola.dev");
+
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Apaga " + rowsAffected + " linha!");
+                System.out.println("User ana@skola.dev foi apagadu.");
+            } else {
+                System.out.println("Ninhun user inkontradu ku es email.");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Éru: " + e.getMessage());
+        }
     }
 }
