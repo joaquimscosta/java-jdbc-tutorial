@@ -1,6 +1,7 @@
 package com.example.examples;
 
 import com.example.config.DatabaseConfig;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,11 +22,28 @@ public class E04_UpdateUser {
         // IMPORTANTE: Sénpri uza WHERE pa evita atualiza TUDU linha!
         String sql = "UPDATE users SET email = ? WHERE name = ?";
 
-        // TODO: Implementa UPDATE
-        // 1. Kria Connection i PreparedStatement (try-with-resources)
-        // 2. Defini valoris pa kada placeholder
-        //    - stmt.setString(1, "maria.silva@skola.dev")  // novu email
-        //    - stmt.setString(2, "Maria Silva")           // nomi di user
-        // 3. Xama executeUpdate() i verifika linhas afetadu
+        try (Connection conn = DriverManager.getConnection(
+                DatabaseConfig.URL,
+                DatabaseConfig.USER,
+                DatabaseConfig.PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Placeholder 1: novu email
+            stmt.setString(1, "maria.silva@skola.dev");
+            // Placeholder 2: nomi di user pa atualiza
+            stmt.setString(2, "Maria Silva");
+
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Atualiza " + rowsAffected + " linha!");
+                System.out.println("Email novu di Maria Silva: maria.silva@skola.dev");
+            } else {
+                System.out.println("Ninhun user inkontradu ku es nomi.");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Éru: " + e.getMessage());
+        }
     }
 }
