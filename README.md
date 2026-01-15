@@ -22,7 +22,7 @@ Es projetu é un tutorial konpletu pa prende konekta Java ku PostgreSQL uzandu J
 
 Es repositóriu ten branchis separadu pa kada seksun di tutorial:
 
-| Branch | Konteudu |
+| Branch | Konteúdu |
 |--------|----------|
 | `main` | **Scaffolding ku TODO** - Kumesa li! |
 | `01-connection` | Soluson E01: Konexon ku bazi di dadus |
@@ -49,7 +49,7 @@ git checkout main
 
 ---
 
-## Rekizitu
+## Pre-rekizitus
 
 Antis di kumesa, verifika ki bu tene:
 
@@ -109,7 +109,7 @@ Kada ezénplu demonstra un konseitu JDBC. Implementa TODO i kori:
 | Ezénplu | Diskrison | Komandu |
 |---------|-----------|---------|
 | **E01** | Konexon ku bazi di dadus | `mvn exec:java -Dexec.mainClass="com.example.examples.E01_Connection"` |
-| **E02** | INSERT - inseri dadus nobu | `mvn exec:java -Dexec.mainClass="com.example.examples.E02_InsertUser"` |
+| **E02** | INSERT - inseri dadus novu | `mvn exec:java -Dexec.mainClass="com.example.examples.E02_InsertUser"` |
 | **E03** | SELECT - le dadus | `mvn exec:java -Dexec.mainClass="com.example.examples.E03_SelectUsers"` |
 | **E04** | UPDATE - atualiza dadus | `mvn exec:java -Dexec.mainClass="com.example.examples.E04_UpdateUser"` |
 | **E05** | DELETE - apaga dadus | `mvn exec:java -Dexec.mainClass="com.example.examples.E05_DeleteUser"` |
@@ -120,11 +120,11 @@ Kada ezénplu demonstra un konseitu JDBC. Implementa TODO i kori:
 
 ## Dezafiu: Ajenda di Kontatu
 
-Dipôs di kaba tudu ezénplus, tenta konstrui un aplikason CLI kompletu!
+Dipôs di kaba tudu ezénplus, tenta konstrui un aplikason CLI konpletu!
 
 **Rekizitus:**
 - Kria tabela `contacts` ku koluna: `id`, `name`, `phone`, `email`
-- Implementa menu interativu ku CRUD kompletu
+- Implementa menu interativu ku CRUD konpletu
 - Uza DAO pattern pa organiza kódigu
 
 **Odja soluson:**
@@ -150,7 +150,7 @@ SELECT * FROM contacts;
 
 ---
 
-## Prublema Komun
+## Problema Komun
 
 | Éru | Soluson |
 |------|----------|
