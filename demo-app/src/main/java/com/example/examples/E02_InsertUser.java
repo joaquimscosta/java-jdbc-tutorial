@@ -1,6 +1,7 @@
 package com.example.examples;
 
 import com.example.config.DatabaseConfig;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,10 +23,28 @@ public class E02_InsertUser {
         // SQL ku placeholder (?) pa seguransa kontra SQL injection
         String sql = "INSERT INTO users (name, email) VALUES (?, ?)";
 
-        // TODO: Implementa INSERT
-        // 1. Kria Connection i PreparedStatement (try-with-resources)
-        // 2. Uza stmt.setString(1, "Ana Costa") pa primeru placeholder
-        // 3. Uza stmt.setString(2, "ana@skola.dev") pa segundu placeholder
-        // 4. Xama stmt.executeUpdate() i imprimi linhas afetadu
+        try (Connection conn = DriverManager.getConnection(
+                DatabaseConfig.URL,
+                DatabaseConfig.USER,
+                DatabaseConfig.PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Defini valoris pa kada placeholder
+            stmt.setString(1, "Ana Costa");
+            stmt.setString(2, "ana@skola.dev");
+
+            // executeUpdate() retorna númeru di linhas afetadu
+            int rowsAffected = stmt.executeUpdate();
+
+            System.out.println("Inseri " + rowsAffected + " linha!");
+            System.out.println("User novu: Ana Costa (ana@skola.dev)");
+
+        } catch (SQLException e) {
+            if (e.getMessage().contains("duplicate key")) {
+                System.err.println("Éru: Email ja izisti na bazi di dadus!");
+            } else {
+                System.err.println("Éru: " + e.getMessage());
+            }
+        }
     }
 }
